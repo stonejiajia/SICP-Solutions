@@ -5,4 +5,6 @@
         ((+ (triangle (- row 1) (- col 1))
             (triangle (- row 1) col)))))
 
-(triangle 5 2)
+(triangle 5 3)
+
+
