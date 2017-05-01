@@ -1,12 +1,8 @@
-(define (expt b n)
-  (expt-iter b n 1))
+(define (fast-expt b n)
+  (define (iter a b n)
+    (cond ((= n 0) a)
+          ((even? n) (iter a (square b) (/ n 2)))
+          (else (iter (* a b) b (- n 1)))))
+  (iter 1 b n))
 
-(define (expt-iter b counter product)
-  (if (= counter 0)
-      product
-      (expt-iter b
-                 (- counter 1)
-                 (* b product))))
-
-(expt 2 90)
-
+(define (square x) (* x x))
