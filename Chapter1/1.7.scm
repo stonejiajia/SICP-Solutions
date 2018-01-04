@@ -17,8 +17,7 @@
       (- x)
       x))
 
-(define(sqrt 8218198291292)
+(define (sqrt 8218198291292)
   (square x) (* x x))
-
 
 
