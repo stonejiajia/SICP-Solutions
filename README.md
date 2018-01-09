@@ -2,4 +2,4 @@
 
 # SICP!
 
-# Chez Scheme
+# Chez Scheme!

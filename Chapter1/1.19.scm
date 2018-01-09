@@ -1,6 +1,6 @@
 
 
-
+(define (square x) (* x x))
 
 (define (fib n)
   (fib-iter 1 0 0 1 n))
@@ -18,6 +18,30 @@
                         p
                         q
                         (- count 1)))))
+
+
+;; 1.22
+
+(define (fib2 n)
+  (cond ((= n 0) 0)
+        ((= n 1) 1)
+        (else (+ (fib2 (- n 1))
+                 (fib2 (- n 2))))))
+
+
+
+
+(define (fib3 n)
+  (fib-iter3 1 0 n))
+
+(define (fib-iter3 a b count)
+  (if (= count 0)
+      b
+      (fib-iter3 (+ a b) a (- count 1))))
+
+
+(trace fib-iter3)
+
 
 
 

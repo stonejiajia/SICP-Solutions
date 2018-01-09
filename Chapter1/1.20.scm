@@ -6,7 +6,5 @@
       (gcd b (remainder a b))))
 
 
+(trace gcd)
 
-(define)
-
-(+ 1 2)
