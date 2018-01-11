@@ -1,0 +1,51 @@
+
+* 1.38
+
+| i   | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 |
+|-----+---+---+---+---+---+---+---+---+---+----+----|
+| D_i | 1 | 2 | 1 | 1 | 4 | 1 | 1 | 6 | 1 |  1 |  8 |
+
+
+
+
+
+
+#+BEGIN_SRC scheme :session 
+ (define (cont-frac n d k) 
+   (define (cont-frac-iter i result) 
+     (if (= i 0) 
+         (/ (n i) (+ (d i) result)) 
+         (cont-frac-iter (- i 1) 
+                         (/ (n i) (+ (d i) result))))) 
+   (cont-frac-iter k 0.0)) 
+
+#+END_SRC
+
+#+RESULTS:
+
+#+BEGIN_SRC scheme :session 
+ (define (e-euler k) 
+   (+ 2.0 (cont-frac (lambda (i) 1) 
+                     (lambda (i) 
+                       (if (= (remainder i 3) 2) ;; i 除以 3 是偶数时
+                           (/ (+ i 1) 1.5)       
+                           1)) 
+                     k))) 
+
+#+END_SRC
+
+#+RESULTS:
+
+#+BEGIN_SRC scheme :session 
+(e-euler 100)
+#+END_SRC
+
+#+RESULTS:
+: 2.5819767068693262
+
+#+BEGIN_SRC scheme :session 
+(remainder 2 3)
+#+END_SRC
+
+#+RESULTS:
+: 2
