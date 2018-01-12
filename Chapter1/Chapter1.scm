@@ -203,14 +203,34 @@
 
 
 
+;;1.34
+
+(define (average-damp f)
+  (lambda (x) (average x (f x))))
+
+(average-damp 10) ;; average-damp is a procedure
+
+((average-damp square) 10) ;; => 55
+
+(define (sqrt-damp x)
+  (fixed-point (average-damp (lambda (y) (/ x y)))
+               1.0))
 
 
 
 
+(define (cube-root x)
+  (fixed-point (average-damp (lambda (y) (/ x (square y))))
+               1.0))
+
+(cube-root 10)
+
+(define (cube x) (* x x x))
+
+
+;; 牛顿法
 
 
 
-
-
-
+                         
 
