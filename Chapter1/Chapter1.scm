@@ -91,7 +91,7 @@
 (define (sum-cubes a b)
   (sum cube a inc b))
 
-(define (cube x) (* x x x))
+(define (cube x) (* x x x))                              
 
 (sum-cubes 1 2)
 
@@ -104,7 +104,7 @@
     (+ x 4))
   (sum pi-term a pi-next b))
 
-(* 8 (pi-sum 1 1000))
+(* 8 (pi-sum 1 100))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -204,6 +204,8 @@
 
 
 ;;1.34
+;;
+(define (square x) (* x x))
 
 (define (average-damp f)
   (lambda (x) (average x (f x))))
@@ -230,7 +232,51 @@
 
 ;; 牛顿法
 
+;1.17
+(define (sqrt-iter guess x)
+  (if (good-enough? guess x)
+      guess
+      (sqrt-iter (improve guess x)
+                 x)))
 
 
-                         
+(define (improve guess x)
+  (average guess (/ x guess)))
+
+(define (average x y)
+  (/ (+ x y) 2))
+
+
+(define (good-enough? guess x)
+  (< (abs (- (square guess) x)) 0.00001))
+
+(define (sqrt x)
+  (sqrt-iter 1.0 x))
+
+(sqrt 2)
+
+;; 牛顿
+
+(define (deriv g)
+  (lambda (x)
+    (/ (- (g (+ x dx)) (g x))
+       dx)))
+
+(define dx 0.000001)
+
+(define (cube x) (* x x x))
+
+((deriv cube) 5)
+
+(define (newton-transform g)
+  (lambda (x)
+    (- x (/ (g x) ((deriv g) x)))))
+
+(define (newtons-method g guess)
+  (fixed-point (newton-transform g) guess))
+
+(define (sqrt x)
+  (newtons-method (lambda (y) (- (square y) x))
+                  1.0))
+
 
