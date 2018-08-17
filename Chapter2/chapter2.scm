@@ -30,7 +30,7 @@
 (define (denom x) (cdr x))
 
 (define (print-rat x)
-  (newline)
+  ;(newline)
   (display (numer x))
   (display "/")
   (display (denom x)))
@@ -38,4 +38,29 @@
 (define one-half (make-rat 1 2))
 
 (print-rat one-half)
+
+
+(define one-third (make-rat 1 3))
+
+(print-rat (add-rat one-half one-third))
+
+(define (gcd a b)
+  (if (= b 0)
+      a
+  (gcd b (remainder a b))))
+
+(make-rat 1 (- 2))
+
+(define (make-rat n d)
+  
+  (let ((g (gcd n d)))
+    (cons (/ n g) (/ d g))))
+
+(make-rat -2 -8)
+
+(define (make-rat n d)
+  (let ((g ((if (< d 0) - +) (abs (gcd n d)))))
+    (cons (/ n g) (/ d g))))
+
+(make-rat 2 -8)
 

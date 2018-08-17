@@ -1,13 +1,3 @@
-
-
-
-
-
-
-
-
-
-
 (define (add-rat x y)
   (make-rat (+ (* (numer x) (denom y))
                (* (numer y) (denom x)))
@@ -66,3 +56,6 @@
   (let ((g ((if (< d 0) - +) (abs (gcd n d)))))
     (cons (/ n g) (/ d g))))
 
+
+
+(define)
