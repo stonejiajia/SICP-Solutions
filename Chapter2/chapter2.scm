@@ -64,3 +64,17 @@
 
 (make-rat 2 -8)
 
+(define (cons x y)
+  (define (dispath m)
+    (cond ((= m 0) m)
+          ((= m 1) y)
+          (else (error "Argument not 0 or 1 -- CONS" m))))
+  dispath)
+
+(define (car z) (z 0))
+
+(define (cdr z) (z 1))
+
+(car (1 2 3))
+
+(car (cons 1 2))
