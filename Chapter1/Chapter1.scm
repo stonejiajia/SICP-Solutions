@@ -278,5 +278,3 @@
 (define (sqrt x)
   (newtons-method (lambda (y) (- (square y) x))
                   1.0))
-
-

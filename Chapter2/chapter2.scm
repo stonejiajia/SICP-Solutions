@@ -64,7 +64,7 @@
 
 (make-rat 2 -8)
 
-(define (cons x y)
+(define (cons1 x y)
   (define (dispath m)
     (cond ((= m 0) m)
           ((= m 1) y)

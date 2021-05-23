@@ -51,3 +51,49 @@
 (lambda (m) (m x y))
 
 (lambda (x) x)
+
+;; 代换模型
+
+(define (f a)
+  (sum-of-squares (+ a 1) (* a 2)))
+
+(define (square x) (* x x))
+
+(define (sum-of-squares x y)
+  (+ (square x) (square y)))
+
+(f 5)
+
+((lambda (m) (m x y)) (lambda (p q) q))
+
+(expt 2 9)
+
+(define (cons x y)
+  (* (expt 2 x)
+     (expt 3 y)))
+
+(define (log-reduce n base)
+  (cond ((not (zero? (remainder n base))) 0)
+        (else (+ (log-reduce (/ n base) base) 1))))
+
+(define (car z)
+  (log-reduce z 2))
+
+(define (cdr z)
+  (log-reduce z 3))
+
+(define test-pair (cons 11 7))
+
+(car test-pair)
+
+(cdr test-pair)
+
+
+(define (cons1 x y)
+  (lambda (m) (m x y)))
+
+(define (car1 z)
+  (z (lambda (p q) p)))
+
+(define (cdr1 z)
+  (z (lambda (p q) q)))
